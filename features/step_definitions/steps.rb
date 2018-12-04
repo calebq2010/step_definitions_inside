@@ -17,7 +17,7 @@ end
 #ParameterType has replaced transform
 ParameterType(
   name: 'CAPTURE_A_NUMBER',
-  regexp: /^\d+$/,
+  regexp: /^$(\d+$)/,
   transformer: -> (number) { number.to_i }
 )
 
