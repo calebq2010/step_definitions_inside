@@ -9,6 +9,18 @@ class Account
 
 end
 
+#no longer used in Cucumber 3.0.0
+# CAPTURE_A_NUMBER = Transform /^\d+$/ do |number|
+#   number.to_i
+# end
+
+#ParameterType has replaced transform
+ParameterType(
+  name: 'CAPTURE_A_NUMBER',
+  regexp: /^\d+$/,
+  transformer: -> (number) { number.to_i }
+)
+
 Given /^I have deposited \$(\d+) in my Account$/ do |amount|
     my_account = Account.new
     my_account.deposit(amount)
