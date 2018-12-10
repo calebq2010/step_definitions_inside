@@ -47,7 +47,7 @@ When /^I withdrawal \$(\d+)/ do |request_amount|
   teller.withdraw_from(@my_account, request_amount)
 end
 
-Then /^\$(\d+) should be dispensed/ do |deposited_amount|
+Then /^\$(\d+) should be dispensed/ do |dispensed_amount|
   #pending("Need to design the deposit interface")
-  puts "The $#{deposited_amount} has been dispensed!"
+  puts "The $#{dispensed_amount} has been dispensed!"
 end
