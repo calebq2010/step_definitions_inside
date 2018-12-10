@@ -16,13 +16,25 @@ class Teller
 
 end
 
-module KnowsMyAccount
-  def my_account
-    @my_account ||= Account.new
+class CashSlot
+  def contents
+    raise("I'm Empty!")
   end
 end
 
-World(KnowsMyAccount)
+#helper module
+module KnowsMyDomain
+
+  def my_account
+    @my_account ||= Account.new
+  end
+
+  def cash_slot
+    @cash_slot ||= CashSlot.new
+  end
+end
+
+World(KnowsMyDomain)
 
 #no longer used in Cucumber 3.0.0
 # CAPTURE_A_NUMBER = Transform /^\d+$/ do |number|
@@ -49,5 +61,5 @@ end
 
 Then /^\$(\d+) should be dispensed/ do |dispensed_amount|
   #pending("Need to design the deposit interface")
-  puts "The $#{dispensed_amount} has been dispensed!"
+  cash_slot.contents.should == dispensed_amount
 end
