@@ -28,11 +28,11 @@ ParameterType(
   transformer: -> (number) { number.to_i }
 )
 
-Given /^I have deposited \$(\d+) in my Account$/ do |amount|
+Given /^I have deposited \$(\d+) in my account$/ do |amount|
     @my_account = Account.new
     @my_account.deposit(amount)
     @my_account.balance.should eq(amount),
-      "Expected the balance to be #{amount} but it was #{my_account.balance}"
+      "Expected the balance to be #{amount}"
 end
 
 When /^I withdrawal \$(\d+)/ do |request_amount|
