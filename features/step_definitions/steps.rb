@@ -16,6 +16,14 @@ class Teller
 
 end
 
+module KnowsMyAccount
+  def my_account
+    @my_account ||= Account.new
+  end
+end
+
+World(KnowsMyAccount)
+
 #no longer used in Cucumber 3.0.0
 # CAPTURE_A_NUMBER = Transform /^\d+$/ do |number|
 #   number.to_i
@@ -29,10 +37,9 @@ ParameterType(
 )
 
 Given /^I have deposited \$(\d+) in my account$/ do |amount|
-    @my_account = Account.new
-    @my_account.deposit(amount)
-    @my_account.balance.should eq(amount),
-      "Expected the balance to be #{amount}"
+    my_account.deposit(amount)
+    my_account.balance.should eq(amount),
+      "Expected the balance to be #{amount} but it was #{my_account.balance}"
 end
 
 When /^I withdrawal \$(\d+)/ do |request_amount|
