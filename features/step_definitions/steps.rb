@@ -10,15 +10,23 @@ class Account
 end
 
 class Teller
-  def withdraw_from(account, amount)
+  def initialize(cash_slot)
+    @cash_slot = cash_slot
+  end
 
+  def withdraw_from(account, amount)
+    @cash_slot.dispense(amount)
   end
 
 end
 
 class CashSlot
   def contents
-    raise("I'm Empty!")
+    @contents or raise("I'm Empty!")
+  end
+
+  def dispense(amount)
+    @contents = amount
   end
 end
 
@@ -31,6 +39,10 @@ module KnowsMyDomain
 
   def cash_slot
     @cash_slot ||= CashSlot.new
+  end
+
+  def teller
+    @tell ||= Teller.new(cash_slot)
   end
 end
 
@@ -55,8 +67,7 @@ Given /^I have deposited \$(\d+) in my account$/ do |amount|
 end
 
 When /^I withdrawal \$(\d+)/ do |request_amount|
-  teller = Teller.new
-  teller.withdraw_from(@my_account, request_amount)
+  teller.withdraw_from(my_account, request_amount)
 end
 
 Then /^\$(\d+) should be dispensed/ do |dispensed_amount|
