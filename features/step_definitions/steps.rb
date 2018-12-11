@@ -1,22 +1,3 @@
-require File.join(File.dirname(__FILE__), '..', '..', 'lib', 'nice_bank')
-
-#helper module
-module KnowsMyDomain
-
-  def my_account
-    @my_account ||= Account.new
-  end
-
-  def cash_slot
-    @cash_slot ||= CashSlot.new
-  end
-
-  def teller
-    @tell ||= Teller.new(cash_slot)
-  end
-end
-
-World(KnowsMyDomain)
 
 #no longer used in Cucumber 3.0.0
 # CAPTURE_A_NUMBER = Transform /^\d+$/ do |number|
