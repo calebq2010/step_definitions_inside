@@ -1,4 +1,10 @@
 class Account
+  def validate(pin)
+    testpin = '1234'
+
+    pin == testpin or raise("Invalid Pin")
+  end
+
   def deposit(amount)
     @balance = amount
   end
