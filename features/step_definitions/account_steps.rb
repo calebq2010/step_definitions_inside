@@ -1,4 +1,4 @@
-Then /^I have deposited \$(\d+) in my account$/ do |amount|
+Then /^my account has been credited with \$(\d+)$/ do |amount|
     my_account.credit(amount)
     my_account.balance.should eq(amount),
       "Expected the balance to be #{amount} but it was #{my_account.balance}"
