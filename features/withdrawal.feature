@@ -5,3 +5,4 @@ Feature: Cash Withdrawal
     Then I have deposited $100 in my account
     When I withdrawal $20
     Then $20 should be dispensed
+    And the balance of my account should be $80
