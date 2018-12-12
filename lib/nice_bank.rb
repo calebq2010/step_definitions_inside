@@ -5,7 +5,7 @@ class Account
     pin == testpin or raise("Invalid Pin")
   end
 
-  def deposit(amount)
+  def credit(amount)
     @balance = amount
   end
 
