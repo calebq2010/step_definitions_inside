@@ -1,4 +1,14 @@
-module KnowsMyDomain
+module KnowsTheUserInterface
+  class UserInterface
+    include Capybara::DSL
+
+    def withdrawal_from(account, amount)
+      visit '/'
+      fill_in 'Amount', :with => amount
+      click_button 'Withdraw'
+    end
+
+  end
 
   def my_account
     @my_account ||= Account.new
@@ -9,8 +19,8 @@ module KnowsMyDomain
   end
 
   def teller
-    @tell ||= Teller.new(cash_slot)
+    @teller ||= UserInterface.new
   end
 end
 
-World(KnowsMyDomain)
+World(KnowsTheUserInterface)

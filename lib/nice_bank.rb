@@ -1,3 +1,8 @@
+require 'sinatra'
+get '/' do
+  'Welcome to our nice bank.'
+end
+
 class Account
   def validate(pin)
     testpin = '1234'
